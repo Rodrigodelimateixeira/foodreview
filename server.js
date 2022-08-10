@@ -1,6 +1,21 @@
 import express  from "express";
+import dotenv from "dotenv";
+import connect from './config/db.js';
 
+// load config
+dotenv.config({ path: './config/config.env' });
+const PORT = process.env.PORT;
+
+
+// Run Server
 const server = express();
-server.listen(3000, console.log("servidor rodando na porta 3000...."));
-server.get('/', (req, res) => res.send("hello minha tropa!"));
-server.get('/users', (req, res) => res.send("Página de usuários!"));
+server.listen(
+    PORT, 
+    console.log("Servidor rodando no ambiente de " + process.env.NODE_ENV + "na porta" +  PORT + "....")
+);
+
+// connect to the database
+
+connect();
+
+//Routes

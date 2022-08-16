@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 import connection from "../config/db.js"
 
-const Review = connection.define(
-    'review',
+const User = connection.define(
+    'user',
     {
 
         id: {
@@ -11,35 +11,30 @@ const Review = connection.define(
             allowNull: false,
             primaryKey: true
         },
-        idUser:{
-            type: Sequelize.INTEGER,
+        name:{
+            type: Sequelize.STRING,
             allowNull: false,
-            references: {
-                model: 'users',
-                key: 'id'
-            }
 
         },
-        idRestaurant:{
-            type: Sequelize.INTEGER,
+        email:{
+            type: Sequelize.STRING,
             allowNull: false,
-            references: {
-                model: 'restaurants',
-                key: 'id'
-            }
-            
+            validate: {
+                isEmail: true
+            },
+            unique: true
         },
-        comment:{
+        password:{
             type: Sequelize.STRING,
             allowNull: false,
             
         },
-        stars:{
-            type: Sequelize.INTEGER,
+        admin:{
+            type: Sequelize.BOOLEAN,
             allowNull: false,
             
         }
     }
 );
  
-export default Review;
+export default User;

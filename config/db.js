@@ -17,16 +17,4 @@ export const connection = new Sequelize (
 );
 
 
-export default async function connect (){
-
-  try{
-    await connection.authenticate();
-    console.log("connection has been established successfully.");
-
-
-  }catch(error){
-    console.log("unable to connect to the database: ", error)
-
-  }
-
-}
+export default connection;
